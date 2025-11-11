@@ -1,98 +1,181 @@
-import { useEffect, useRef, useState } from "react";
-import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+import { memo, useMemo } from "react";
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Graticule,
+  Marker,
+  Sphere,
+} from "react-simple-maps";
+import clsx from "clsx";
 
-const TacticalMap = () => {
-  const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
-  const [apiKey, setApiKey] = useState("");
-  const [isMapReady, setIsMapReady] = useState(false);
-
-  const visitedLocations = [
-    { name: "Washington DC", coordinates: [-77.0369, 38.9072] },
-    { name: "New York", coordinates: [-74.006, 40.7128] },
-    { name: "San Francisco", coordinates: [-122.4194, 37.7749] },
-    { name: "Los Angeles", coordinates: [-118.2437, 34.0522] },
-  ];
-
-  const initializeMap = () => {
-    if (!mapContainer.current || !apiKey) return;
-
-    mapboxgl.accessToken = apiKey;
-
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: "mapbox://styles/mapbox/dark-v11",
-      center: [-98.5795, 39.8283],
-      zoom: 3,
-      pitch: 45,
-    });
-
-    map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
-
-    map.current.on("load", () => {
-      setIsMapReady(true);
-
-      // Add markers for visited locations
-      visitedLocations.forEach((location) => {
-        const el = document.createElement("div");
-        el.className = "w-4 h-4 bg-primary rounded-full border-2 border-primary-foreground shadow-tactical";
-
-        new mapboxgl.Marker(el)
-          .setLngLat(location.coordinates as [number, number])
-          .setPopup(
-            new mapboxgl.Popup({ offset: 25 }).setHTML(
-              `<div class="bg-card p-2 text-foreground font-mono text-sm">${location.name}</div>`
-            )
-          )
-          .addTo(map.current!);
-      });
-    });
-  };
-
-  useEffect(() => {
-    return () => {
-      map.current?.remove();
-    };
-  }, []);
-
-  return (
-    <div className="relative h-full w-full">
-      {!isMapReady && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/95 backdrop-blur">
-          <div className="w-full max-w-md space-y-4 p-6">
-            <div className="space-y-2">
-              <h3 className="text-lg font-semibold text-foreground">Enter Mapbox API Key</h3>
-              <p className="text-sm text-muted-foreground">
-                Get your free public token at{" "}
-                <a
-                  href="https://mapbox.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline"
-                >
-                  mapbox.com
-                </a>
-              </p>
-            </div>
-            <Input
-              type="text"
-              placeholder="pk.eyJ1..."
-              value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
-              className="font-mono"
-            />
-            <Button onClick={initializeMap} className="w-full" disabled={!apiKey}>
-              Initialize Map
-            </Button>
-          </div>
-        </div>
-      )}
-      <div ref={mapContainer} className="h-full w-full rounded-lg border border-border" />
-    </div>
-  );
+type TacticalMarker = {
+  name: string;
+  coordinates: [number, number];
+  description?: string;
 };
+
+interface TacticalMapProps {
+  geographyUrl: string;
+  highlightedRegions?: string[];
+  markers?: TacticalMarker[];
+  variant?: "world" | "usa";
+  projectionConfig?: {
+    scale?: number;
+    center?: [number, number];
+    rotate?: [number, number, number];
+  };
+  className?: string;
+  showGraticule?: boolean;
+}
+
+const TacticalMap = memo(
+  ({
+    geographyUrl,
+    highlightedRegions = [],
+    markers = [],
+    variant = "world",
+    projectionConfig,
+    className,
+    showGraticule = true,
+  }: TacticalMapProps) => {
+    const visitedLookup = useMemo(
+      () =>
+        new Set(
+          highlightedRegions.map((region) => region.trim().toLowerCase())
+        ),
+      [highlightedRegions]
+    );
+
+    const config = useMemo(() => {
+      if (variant === "usa") {
+        return {
+          projection: "geoAlbersUsa",
+          config: {
+            scale: 1000,
+            center: [-97, 39],
+            ...projectionConfig,
+          },
+        } as const;
+      }
+
+      return {
+        projection: "geoEqualEarth",
+        config: {
+          scale: 155,
+          center: [0, 18],
+          ...projectionConfig,
+        },
+      } as const;
+    }, [variant, projectionConfig]);
+
+    return (
+      <div
+        className={clsx(
+          "tactical-map relative h-full w-full overflow-hidden rounded-xl border border-border bg-[#0b1108]",
+          className
+        )}
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_-10%,rgba(79,89,39,0.35),transparent_65%),radial-gradient(circle_at_80%_120%,rgba(8,12,5,0.7),transparent_75%)]" />
+        <ComposableMap
+          projection={config.projection}
+          projectionConfig={config.config}
+          className="relative h-full w-full text-foreground"
+        >
+          {variant === "world" && (
+            <>
+              <Sphere stroke="#1c2717" strokeWidth={1.25} fill="#0b1108" />
+              {showGraticule && (
+                <Graticule stroke="#24321c" strokeWidth={0.4} />
+              )}
+            </>
+          )}
+
+          <Geographies geography={geographyUrl}>
+            {({ geographies }) =>
+              geographies.map((geo) => {
+                const name =
+                  (geo.properties?.NAME_LONG as string) ||
+                  (geo.properties?.NAME as string) ||
+                  (geo.properties?.name as string) ||
+                  "";
+                const isVisited = visitedLookup.has(name.trim().toLowerCase());
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    style={{
+                      default: {
+                        fill: isVisited
+                          ? "rgba(83, 93, 43, 0.85)"
+                          : "rgba(18, 26, 20, 0.85)",
+                        stroke: "rgba(214, 241, 195, 0.25)",
+                        strokeWidth: 0.6,
+                        outline: "none",
+                      },
+                      hover: {
+                        fill: "rgba(121, 135, 64, 0.95)",
+                        stroke: "rgba(214, 241, 195, 0.4)",
+                        strokeWidth: 0.8,
+                        outline: "none",
+                      },
+                      pressed: {
+                        fill: "rgba(121, 135, 64, 1)",
+                        stroke: "rgba(214, 241, 195, 0.5)",
+                        strokeWidth: 1,
+                        outline: "none",
+                      },
+                    }}
+                  />
+                );
+              })
+            }
+          </Geographies>
+
+          {markers.map((marker) => (
+            <Marker
+              key={`${marker.name}-${marker.coordinates.join(",")}`}
+              coordinates={marker.coordinates}
+            >
+              <g transform="translate(-6, -6)">
+                <circle
+                  r={6}
+                  fill="rgba(84, 97, 44, 0.95)"
+                  stroke="rgba(214, 241, 195, 0.75)"
+                  strokeWidth={1.2}
+                />
+                <circle
+                  r={2.2}
+                  fill="rgba(214, 241, 195, 0.95)"
+                  stroke="rgba(8, 12, 5, 0.6)"
+                  strokeWidth={0.6}
+                />
+              </g>
+              <text
+                textAnchor="middle"
+                y={-10}
+                className="font-mono text-[10px] tracking-widest text-[#b5c48a] drop-shadow-sm"
+              >
+                {marker.name}
+              </text>
+              {marker.description && (
+                <text
+                  textAnchor="middle"
+                  y={-2}
+                  className="font-sans text-[9px] text-muted-foreground"
+                >
+                  {marker.description}
+                </text>
+              )}
+            </Marker>
+          ))}
+        </ComposableMap>
+        <div className="pointer-events-none absolute inset-0 border border-[rgba(214,241,195,0.08)] mix-blend-screen" />
+      </div>
+    );
+  }
+);
+
+TacticalMap.displayName = "TacticalMap";
 
 export default TacticalMap;

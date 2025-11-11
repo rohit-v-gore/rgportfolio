@@ -95,3 +95,8 @@ All colors MUST be HSL.
     transition: var(--transition-smooth);
   }
 }
+
+.tactical-map text {
+  user-select: none;
+  pointer-events: none;
+}

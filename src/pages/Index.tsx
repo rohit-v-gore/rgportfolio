@@ -40,10 +40,10 @@ const Index = () => {
             <span className="font-mono text-sm text-primary">OPERATIONAL STATUS: ACTIVE</span>
           </div>
           <h1 className="mb-4 font-mono text-5xl font-bold tracking-wider text-foreground md:text-7xl">
-            TACTICAL PORTFOLIO
+            rohit-v-gore
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Defense-focused professional showcasing expertise across multiple operational domains
+            This is where I store information about myself. Made it defense themed because I have spent my whole career in defense and embedded systems so far.
           </p>
         </div>
 

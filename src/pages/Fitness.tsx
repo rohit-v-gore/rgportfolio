@@ -3,9 +3,30 @@ import { Card } from "@/components/ui/card";
 
 const Fitness = () => {
   const activities = [
-    { name: "Running", frequency: "5x per week", metric: "25 miles/week" },
-    { name: "Weight Training", frequency: "4x per week", metric: "Strength focused" },
-    { name: "Tactical Training", frequency: "2x per week", metric: "Combat conditioning" },
+    {
+      name: "Los Angeles Marathon",
+      frequency: "March 2024",
+      metric: "4:15:37",
+      description: "My first marathon. One of my best friends, Shrujal who was my roomate at UCLA told me to sign up with him and get the marathon done before graduation and thanks to him we did.",
+    },
+    {
+      name: "Baltimore Half Marathon",
+      frequency: "October 2025",
+      metric: "2:06:34",
+      description: "My first half marathon since college ended and that post-grad fitness decline did hit here. Also a very hilly race.",
+    },
+    {
+      name: "Army Ten Miler",
+      frequency: "October 2025",
+      metric: "1:26:04",
+      description: "DC is not that hilly so I did not struggle with this one as much but I do want to do this one again sometime.",
+    },
+    {
+      name: "Spartan 10K",
+      frequency: "September 2024",
+      metric: "---",
+      description: "A completely different type of race that combines running with obstacles. Although I did not store the time information I really ejoyed using my upper body to do random obstacles. I will definitely do this one again.",
+    },
   ];
 
   return (
@@ -27,6 +48,7 @@ const Fitness = () => {
               <h3 className="text-xl font-bold text-foreground">{activity.name}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{activity.frequency}</p>
               <p className="mt-4 font-mono text-lg text-primary">{activity.metric}</p>
+              <p className="mt-4 text-sm text-muted-foreground">{activity.description}</p>
             </Card>
           ))}
         </div>
