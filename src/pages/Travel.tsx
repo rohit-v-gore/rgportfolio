@@ -7,48 +7,49 @@ type Location = {
 
 const Travel = () => {
   const countriesVisited: Location[] = [
-    { name: "Ireland", description: "<example>" },
-    { name: "Netherlands", description: "<example>" },
-    { name: "Jamaica", description: "<example>" },
-    { name: "Portugal", description: "<example>" },
-    { name: "Egypt", description: "<example>" },
-    { name: "Taiwan", description: "<example>" },
-    { name: "Switzerland", description: "<example>" },
-    { name: "Iceland", description: "<example>" },
-    { name: "France", description: "<example>" },
-    { name: "Belgium", description: "<example>" },
-    { name: "Italy", description: "<example>" },
-    { name: "Indonesia", description: "<example>" },
-    { name: "Japan", description: "<example>" },
-    { name: "Peru", description: "<example>" },
-    { name: "Costa Rica", description: "<example>" },
-    { name: "Panama", description: "<example>" },
-    { name: "Aruba", description: "<example>" },
-    { name: "Mexico", description: "<example>" },
-    { name: "Canada", description: "<example>" },
-    { name: "India", description: "<example>" },
-    { name: "UK", description: "<example>" },
-    { name: "Germany", description: "<example>" },
-    { name: "Bahamas", description: "<example>" },
+    { name: "United Arab Emirates", description: "Burj Kalifa, San Dune Buggy, Grand Sheikh Mosque, Emirates, Palm Jumeirah" },
+    { name: "Ireland", description: "Fish and Chips, Guinness Factory, Rugby" },
+    { name: "Netherlands", description: "Amsterdam" },
+    { name: "Jamaica", description: "Montego bay resort, Kayaking, Windsurfing, Warm Ocean Temp" },
+    { name: "Portugal", description: "4 Palaces, Lisbon, Wine Tasting" },
+    { name: "Egypt", description: "Cairo, Giza, Pyramids, Tombs, Temples" },
+    { name: "Taiwan", description: "Taipei" },
+    { name: "Switzerland", description: "Cheese Fondue, Interlaaken, Matterhorn Skiing, Designer, Lindt Factory" },
+    { name: "Iceland", description: "No actual ice, caves, Tectonic Plate Snorkeling, Volcanoes" },
+    { name: "France", description: "Pan au chocolat, Eiffel Tower, Lourve, Cathedrals" },
+    { name: "Belgium", description: "Brussels, Beer Flights, Waffles, Chocolate" },
+    { name: "Italy", description: "Pizza, Colosseum, Leaning Tower of Pisa, Lamborghini Factory, Pagani Factory, Rome Ruins" },
+    { name: "Indonesia", description: "Bali, Amazing Villas" },
+    { name: "Japan", description: "Tokyo, Kyoto, Shinjuku, Gold Temple, Electric City, Shinkansen" },
+    { name: "Peru", description: "Machu Pichu, LLamas, Cuzco, Ruins" },
+    { name: "Costa Rica", description: "Volanoes, White Water Rafting, Ziplining, Jetski, ATV, San Jose" },
+    { name: "Panama", description: "Beaches, Panama City" },
+    { name: "Aruba", description: "Beahes, Windsurf" },
+    { name: "Mexico", description: "Cabo San Lucas, Cancun, Chichen Itza" },
+    { name: "Canada", description: "Niagra Falls, Vancouver" },
+    { name: "India", description: "Mumbai, Pune, Taj Mahal, New Delhi, Lucknow, Trump Tower" },
+    { name: "UK", description: "Big Bentley, Beer, Crystal Palace Soccer, Buckingham Palace, Cathedrals" },
+    { name: "Germany", description: "Frankfurt, Stuttgart, Porsche Museum, BMW Velt, Beer" },
+    { name: "Bahamas", description: "Disney Cruise, Beaches, Sand Castles" },
   ];
 
   const usCitiesVisited: Location[] = [
-    { name: "San Diego, CA", description: "<example>" },
-    { name: "Panama City Beach, FL", description: "<example>" },
-    { name: "Washington, DC", description: "<example>" },
-    { name: "Los Angeles, CA", description: "<example>" },
-    { name: "New York, NY", description: "<example>" },
-    { name: "Honolulu, HI", description: "<example>" },
-    { name: "Juneau, AK", description: "<example>" },
-    { name: "Arlington, VA", description: "<example>" },
-    { name: "Boston, MA", description: "<example>" },
-    { name: "Baltimore, MD", description: "<example>" },
-    { name: "Las Vegas, NV", description: "<example>" },
-    { name: "New Orleans, LA", description: "<example>" },
-    { name: "Seattle, WA", description: "<example>" },
-    { name: "San Fransisco, CA", description: "<example>" },
-    { name: "Chicago, IL", description: "<example>" },
-    { name: "Wichita, KS", description: "<example>" },
+    { name: "San Diego, CA", description: "Zoo" },
+    { name: "Panama City Beach, FL", description: "Naval Surface Warfare Center" },
+    { name: "Washington, DC", description: "Home Base" },
+    { name: "Los Angeles, CA", description: "College, Dodgers Games, Nightlife" },
+    { name: "New York, NY", description: "Fun City with Friends, Giants Games" },
+    { name: "Honolulu, HI", description: "Beaches" },
+    { name: "Juneau, AK", description: "laciers" },
+    { name: "Arlington, VA", description: "Sub-home Base" },
+    { name: "Boston, MA", description: "Cambridge" },
+    { name: "Baltimore, MD", description: "Federal Hill, Orioles Games" },
+    { name: "Las Vegas, NV", description: "Gambling, Clubbing" },
+    { name: "New Orleans, LA", description: "Imternship, Creole, Seafood, Beignet, Alligators" },
+    { name: "Seattle, WA", description: "Space Needle, Voodoo Donuts" },
+    { name: "San Fransisco, CA", description: "Tech Hub" },
+    { name: "Chicago, IL", description: "Bean" },
+    { name: "Wichita, KS", description: "First Internship, Private Jet Company" },
   ];
 
   return (
@@ -93,7 +94,7 @@ const Travel = () => {
           <div className="flex flex-col gap-6 rounded-3xl border border-border bg-card/80 p-8 backdrop-blur">
             <div className="space-y-4">
               <h3 className="font-mono text-lg font-semibold text-foreground">
-                Visited U.S. Cities ({usCitiesVisited.length})
+                Visited U.S. Major Cities ({usCitiesVisited.length})
               </h3>
               <p className="text-sm leading-relaxed text-muted-foreground">
                 My dad has been to like 47 US states. I feel like I need to get to 50 and visit more cities before him.

@@ -43,7 +43,7 @@ const Index = () => {
             rohit-v-gore
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            This is where I store information. It is military themed because it's cool.
+            Information dump, made this sometime ago, updated recently
           </p>
         </div>
 

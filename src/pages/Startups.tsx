@@ -4,11 +4,18 @@ import { Card } from "@/components/ui/card";
 const Startups = () => {
   const startups = [
     {
-      name: "Company Name",
-      description: "Description of the startup and what it does.",
-      role: "Your Role",
-      period: "Period",
-      website: "https://example.com",
+      name: "HiLabs Inc.",
+      description: "HiLabs utilizes AI/ML techniques to clean errors in healthcare data for providers",
+      role: "Founded 2014",
+      period: "LATEST: Series B, $39M",
+      website: "https://hilabs.com",
+    },
+    {
+      name: "Autosana",
+      description: "Founded by two of my great friends, Autosana is a mobile app QA agent that performs test suites 24/7.",
+      role: "Founded 2025",
+      period: "LATEST: Raised Seed Funding August 2025",
+      website: "autosana.ai",
     },
     {
       name: "Company Name",
@@ -18,18 +25,11 @@ const Startups = () => {
       website: "https://example.com",
     },
     {
-      name: "Company Name",
-      description: "Description of the startup and what it does.",
-      role: "Your Role",
-      period: "Period",
-      website: "https://example.com",
-    },
-    {
-      name: "Company Name",
-      description: "Description of the startup and what it does.",
-      role: "Your Role",
-      period: "Period",
-      website: "https://example.com",
+      name: "CarnotX",
+      description: "Optimized data center cooling using AI/ML tecnhiques.",
+      role: "Founded 2025",
+      period: "LATEST: Raising Pre-seed Funding",
+      website: "carnotx.com",
     },
   ];
 
@@ -44,7 +44,7 @@ const Startups = () => {
 
         <Card className="mb-8 border-border bg-card/80 p-6 backdrop-blur">
           <p className="text-sm leading-relaxed text-muted-foreground">
-            Add your description here explaining what this tab is for.
+            On this tab I have included all of the startups I am excited about and hoping to take off.
           </p>
         </Card>
 
