@@ -27,6 +27,12 @@ const Index = () => {
       latitude: 34.0522,
       longitude: -118.2437,
     },
+    {
+      name: "Boston",
+      timezone: "America/New_York",
+      latitude: 42.3601,
+      longitude: -71.0589,
+    },
   ];
 
   return (
@@ -37,13 +43,13 @@ const Index = () => {
         {/* Hero Section */}
         <div className="mb-16 text-center">
           <div className="mb-6 inline-block border border-primary bg-gradient-tactical px-4 py-2">
-            <span className="font-mono text-sm text-primary">OPERATIONAL STATUS: ACTIVE</span>
+            <span className="font-mono text-sm text-primary">no, i am not paying for a domain</span>
           </div>
           <h1 className="mb-4 font-mono text-5xl font-bold tracking-wider text-foreground md:text-7xl">
             rohit-v-gore
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Information dump, made this sometime ago, updated recently
+            My corner, made this a long time ago, updated recently; I also love meteorology.
           </p>
         </div>
 

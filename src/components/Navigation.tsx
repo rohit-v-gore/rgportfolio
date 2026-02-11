@@ -1,14 +1,12 @@
-import ThemeToggle from "./ThemeToggle";
 import { NavLink } from "./NavLink";
 
 const Navigation = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Career", path: "/career" },
-    { name: "Startups", path: "/startups" },
+    { name: "Education", path: "/education" },
     { name: "Fitness", path: "/fitness" },
     { name: "Travel", path: "/travel" },
-    { name: "Hobbies", path: "/hobbies" },
   ];
 
   return (
@@ -32,7 +30,6 @@ const Navigation = () => {
                 </NavLink>
               ))}
             </div>
-            <ThemeToggle />
           </div>
         </div>
       </div>

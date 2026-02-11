@@ -2,6 +2,13 @@ import Navigation from "@/components/Navigation";
 import { Card } from "@/components/ui/card";
 
 const Fitness = () => {
+  const liftingNumbers = {
+    bench: "215",
+    squat: "195",
+    deadlift: "280",
+    mileTime: "5.50",
+  };
+
   const activities = [
     {
       name: "Los Angeles Marathon",
@@ -39,6 +46,28 @@ const Fitness = () => {
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
+          <Card className="group border-border bg-card p-6 transition-all hover:border-primary hover:shadow-tactical">
+            <div className="mb-4 h-2 w-2 rounded-full bg-primary" />
+            <h3 className="text-xl font-bold text-foreground">Records</h3>
+            <div className="mt-6 space-y-4">
+              <div>
+                <p className="text-sm text-muted-foreground">Bench Press</p>
+                <p className="mt-1 font-mono text-lg font-semibold text-primary">{liftingNumbers.bench} lbs</p>
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Squat</p>
+                <p className="mt-1 font-mono text-lg font-semibold text-primary">{liftingNumbers.squat} lbs</p>
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Deadlift</p>
+                <p className="mt-1 font-mono text-lg font-semibold text-primary">{liftingNumbers.deadlift} lbs</p>
+              </div>
+              <div className="pt-4 border-t border-border">
+                <p className="text-sm text-muted-foreground">Fastest Mile</p>
+                <p className="mt-1 font-mono text-lg font-semibold text-primary">{liftingNumbers.mileTime}</p>
+              </div>
+            </div>
+          </Card>
           {activities.map((activity, index) => (
             <Card
               key={index}

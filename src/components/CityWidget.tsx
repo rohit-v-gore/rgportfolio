@@ -101,43 +101,49 @@ const CityWidget = ({ city, timezone, latitude, longitude }: CityWidgetProps) =>
 
     fetchWeather();
 
+    // Refresh weather every 10 minutes
+    const weatherInterval = setInterval(fetchWeather, 10 * 60 * 1000);
+
     return () => {
       controller.abort();
+      clearInterval(weatherInterval);
     };
   }, [city, latitude, longitude]);
 
   return (
-    <Card className="group relative overflow-hidden border-border bg-card p-6 transition-all hover:border-primary hover:shadow-tactical">
+    <Card className="group relative flex flex-col overflow-hidden border-border bg-card p-6 transition-all hover:border-primary hover:shadow-tactical">
       <div className="absolute inset-0 bg-gradient-tactical opacity-0 transition-opacity group-hover:opacity-100" />
-      <div className="relative">
-        <div className="mb-4 flex items-start justify-between">
-          <div>
-            <h3 className="text-sm font-medium text-muted-foreground">{city}</h3>
-            <p className="mt-2 font-mono text-3xl font-bold text-foreground">{time}</p>
-          </div>
+      <div className="relative flex flex-col flex-1">
+        <div className="mb-4">
+          <h3 className="text-sm font-medium text-muted-foreground">{city}</h3>
+        </div>
+        <div className="flex-1">
+          {weather.status === "success" && (
+            <div>
+              <div className="flex flex-col">
+                <span className="font-mono text-4xl font-bold text-primary">{weather.temp}°F</span>
+                <span className="mt-2 text-sm text-muted-foreground">{weather.condition}</span>
+              </div>
+            </div>
+          )}
+          {weather.status === "loading" && (
+            <div>
+              <div className="flex flex-col">
+                <span className="font-mono text-4xl font-bold text-primary">--°F</span>
+                <span className="mt-2 text-sm text-muted-foreground">Updating</span>
+              </div>
+            </div>
+          )}
+          {weather.status === "error" && (
+            <div>
+              <span className="text-sm text-muted-foreground">Weather unavailable</span>
+            </div>
+          )}
+        </div>
+        <div className="mt-4 flex items-center gap-2 border-t border-border pt-4">
+          <p className="font-mono text-xs text-muted-foreground">{time}</p>
           <div className="h-2 w-2 animate-pulse rounded-full bg-primary" />
         </div>
-        {weather.status === "success" && (
-          <div className="mt-4 border-t border-border pt-4">
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-muted-foreground">{weather.condition}</span>
-              <span className="font-mono text-xl font-semibold text-primary">{weather.temp}°F</span>
-            </div>
-          </div>
-        )}
-        {weather.status === "loading" && (
-          <div className="mt-4 border-t border-border pt-4">
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-muted-foreground">Updating</span>
-              <span className="font-mono text-xl font-semibold text-primary">--°F</span>
-            </div>
-          </div>
-        )}
-        {weather.status === "error" && (
-          <div className="mt-4 border-t border-border pt-4">
-            <span className="text-xs text-muted-foreground">Weather unavailable</span>
-          </div>
-        )}
       </div>
     </Card>
   );

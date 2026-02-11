@@ -6,10 +6,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Career from "./pages/Career";
-import Startups from "./pages/Startups";
+import Education from "./pages/Education";
 import Fitness from "./pages/Fitness";
 import Travel from "./pages/Travel";
-import Hobbies from "./pages/Hobbies";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,10 +23,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/career" element={<Career />} />
-            <Route path="/startups" element={<Startups />} />
+            <Route path="/education" element={<Education />} />
             <Route path="/fitness" element={<Fitness />} />
             <Route path="/travel" element={<Travel />} />
-            <Route path="/hobbies" element={<Hobbies />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
@@ -58,12 +56,6 @@ const App = () => (
                 className="rounded-full border border-border bg-card/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-foreground transition hover:border-primary hover:text-primary"
               >
                 LinkedIn
-              </a>
-              <a
-                href="tel:+13013798369"
-                className="rounded-full border border-border bg-card/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-foreground transition hover:border-primary hover:text-primary"
-              >
-                Call
               </a>
               <a
                 href="mailto:rohitvivekgore@gmail.com"
