@@ -7,7 +7,7 @@ type Location = {
 
 const Travel = () => {
   const countriesVisited: Location[] = [
-    { name: "United Arab Emirates", description: "Burj Kalifa, San Dune Buggy, Grand Sheikh Mosque, Emirates, Palm Jumeirah" },
+    { name: "United Arab Emirates", description: "Burj Kalifa, San Dune Buggy, Grand Sheikh Mosque, Emirates Business Class Experience, Palm Jumeirah" },
     { name: "Ireland", description: "Fish and Chips, Guinness Factory, Rugby" },
     { name: "Netherlands", description: "Amsterdam" },
     { name: "Jamaica", description: "Montego bay resort, Kayaking, Windsurfing, Warm Ocean Temp" },
@@ -40,14 +40,14 @@ const Travel = () => {
     { name: "Los Angeles, CA", description: "College, Dodgers Games, Nightlife" },
     { name: "New York, NY", description: "Fun City with Friends, Giants Games" },
     { name: "Honolulu, HI", description: "Beaches" },
-    { name: "Juneau, AK", description: "laciers" },
+    { name: "Juneau, AK", description: "Glaciers" },
     { name: "Arlington, VA", description: "Sub-home Base" },
     { name: "Boston, MA", description: "Cambridge" },
     { name: "Baltimore, MD", description: "Federal Hill, Orioles Games" },
     { name: "Las Vegas, NV", description: "Gambling, Clubbing" },
-    { name: "New Orleans, LA", description: "Imternship, Creole, Seafood, Beignet, Alligators" },
+    { name: "New Orleans, LA", description: "Internship, Creole, Seafood, Beignet, Alligators" },
     { name: "Seattle, WA", description: "Space Needle, Voodoo Donuts" },
-    { name: "San Fransisco, CA", description: "Tech Hub" },
+    { name: "San Fransisco, CA", description: "Tech Hub, Majority of my friends live here" },
     { name: "Chicago, IL", description: "Bean" },
     { name: "Wichita, KS", description: "First Internship, Private Jet Company" },
   ];
