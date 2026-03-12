@@ -55,22 +55,24 @@ const Travel = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <main className="container mx-auto px-6 pt-24 pb-12">
+      <main className="container mx-auto px-4 pt-20 pb-12 sm:px-6 sm:pt-24">
         <div className="mb-8">
-          <h1 className="mb-4 font-mono text-4xl font-bold text-foreground">TRAVEL</h1>
+          <h1 className="mb-4 font-mono text-3xl font-bold text-foreground sm:text-4xl">
+            TRAVEL
+          </h1>
           <div className="h-1 w-20 bg-primary" />
-          <p className="mt-4 max-w-3xl text-muted-foreground">
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base sm:leading-relaxed">
             A log of all of the places I have traveled. I would love to populate this more each year. Let's see if my career allows it.
           </p>
         </div>
 
         <section className="grid gap-10 lg:grid-cols-2">
-          <div className="flex flex-col gap-6 rounded-3xl border border-border bg-card/80 p-8 backdrop-blur">
+          <div className="flex flex-col gap-6 rounded-3xl border border-border bg-card/80 p-5 backdrop-blur sm:p-8">
             <div className="space-y-4">
-              <h3 className="font-mono text-lg font-semibold text-foreground">
+              <h3 className="font-mono text-base font-semibold text-foreground sm:text-lg">
                 Visited Countries ({countriesVisited.length})
               </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+              <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
                 My parents love to travel. They took us many places growing up. I have continued this hobby.
               </p>
               <div className="space-y-3">
@@ -79,9 +81,11 @@ const Travel = () => {
                     key={country.name}
                     className="rounded-lg border border-primary/20 bg-primary/5 px-4 py-3 shadow-inner"
                   >
-                    <h4 className="font-mono text-sm font-semibold text-foreground">{country.name}</h4>
+                    <h4 className="font-mono text-sm font-semibold text-foreground sm:text-base">
+                      {country.name}
+                    </h4>
                     {country.description && (
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      <p className="mt-2 break-words text-sm leading-relaxed text-muted-foreground hyphens-auto sm:text-base">
                         {country.description}
                       </p>
                     )}
@@ -91,12 +95,12 @@ const Travel = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-6 rounded-3xl border border-border bg-card/80 p-8 backdrop-blur">
+          <div className="flex flex-col gap-6 rounded-3xl border border-border bg-card/80 p-5 backdrop-blur sm:p-8">
             <div className="space-y-4">
-              <h3 className="font-mono text-lg font-semibold text-foreground">
+              <h3 className="font-mono text-base font-semibold text-foreground sm:text-lg">
                 Visited U.S. Major Cities ({usCitiesVisited.length})
               </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+              <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
                 My dad has been to like 47 US states. I feel like I need to get to 50 and visit more cities before him.
               </p>
               <div className="space-y-3">
@@ -105,9 +109,11 @@ const Travel = () => {
                     key={city.name}
                     className="rounded-lg border border-border bg-background px-4 py-3 shadow-sm"
                   >
-                    <h4 className="font-mono text-sm font-semibold text-foreground">{city.name}</h4>
+                    <h4 className="font-mono text-sm font-semibold text-foreground sm:text-base">
+                      {city.name}
+                    </h4>
                     {city.description && (
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      <p className="mt-2 break-words text-sm leading-relaxed text-muted-foreground hyphens-auto sm:text-base">
                         {city.description}
                       </p>
                     )}
